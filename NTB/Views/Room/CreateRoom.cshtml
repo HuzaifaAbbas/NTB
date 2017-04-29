@@ -1,0 +1,57 @@
+﻿@model NTB.Room
+
+@{
+    ViewBag.Title = "CreateRoom";
+    Layout = "~/Views/Shared/_masterpage.cshtml";
+}
+
+<h2>CreateRoom</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Room</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AreaSqFt)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AreaSqFt)
+            @Html.ValidationMessageFor(model => model.AreaSqFt)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Cost)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Cost)
+            @Html.ValidationMessageFor(model => model.Cost)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FloorId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FloorId)
+            @Html.ValidationMessageFor(model => model.FloorId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RoomTypeId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RoomTypeId)
+            @Html.ValidationMessageFor(model => model.RoomTypeId)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

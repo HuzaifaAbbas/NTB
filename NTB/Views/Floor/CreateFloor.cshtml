@@ -1,0 +1,49 @@
+﻿@model NTB.Floor
+
+@{
+    ViewBag.Title = "CreateFloor";
+    Layout = "~/Views/Shared/_masterpage.cshtml";
+}
+
+<h2>CreateFloor</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Floor</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FloorNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FloorNo)
+            @Html.ValidationMessageFor(model => model.FloorNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BuildingId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BuildingId)
+            @Html.ValidationMessageFor(model => model.BuildingId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FloorTypeId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FloorTypeId)
+            @Html.ValidationMessageFor(model => model.FloorTypeId)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

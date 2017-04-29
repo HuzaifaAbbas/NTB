@@ -1,0 +1,97 @@
+﻿@model NTB.Building
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_masterpage.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Building</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NoOfFloors)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NoOfFloors)
+            @Html.ValidationMessageFor(model => model.NoOfFloors)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NoOfRooms)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NoOfRooms)
+            @Html.ValidationMessageFor(model => model.NoOfRooms)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DateOfConstruction)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DateOfConstruction)
+            @Html.ValidationMessageFor(model => model.DateOfConstruction)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ConstructionCost)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ConstructionCost)
+            @Html.ValidationMessageFor(model => model.ConstructionCost)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OccupancyPermitDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OccupancyPermitDate)
+            @Html.ValidationMessageFor(model => model.OccupancyPermitDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LandId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LandId)
+            @Html.ValidationMessageFor(model => model.LandId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BuildTypeId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BuildTypeId)
+            @Html.ValidationMessageFor(model => model.BuildTypeId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BuildingStatusId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BuildingStatusId)
+            @Html.ValidationMessageFor(model => model.BuildingStatusId)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
