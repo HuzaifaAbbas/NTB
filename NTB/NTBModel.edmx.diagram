@@ -35,6 +35,7 @@
         <AssociationConnector Association="NTBModel.FK_Rooms_RoomTypes" ManuallyRouted="false" />
         <AssociationConnector Association="NTBModel.FK_Sales_Rooms" ManuallyRouted="false" />
         <AssociationConnector Association="NTBModel.FK_Sales_SalesStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="NTBModel.FK_Lands_Admin" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

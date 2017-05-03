@@ -1,0 +1,82 @@
+﻿@model IEnumerable<NTB.Building>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_masterpage.cshtml";
+}
+
+<h2>Buildings</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-striped table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoOfFloors)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoOfRooms)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfConstruction)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConstructionCost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OccupancyPermitDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LandId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuildTypeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuildingStatusId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoOfFloors)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoOfRooms)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfConstruction)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConstructionCost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OccupancyPermitDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Land.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuildingType.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuildingStatus.Name)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", new { Id = item.Id })"><span class="glyphicon glyphicon-edit">&nbsp;</span></a>&nbsp;&nbsp;&nbsp;
+            <a href="@Url.Action("Details", new { Id = item.Id })"><span class="glyphicon glyphicon-briefcase">&nbsp;</span></a>&nbsp;&nbsp;&nbsp;
+            <a href="@Url.Action("Delete", new { Id = item.Id })"><span class="glyphicon glyphicon-remove">&nbsp;</span></a>
+        </td>
+    </tr>
+}
+
+</table>

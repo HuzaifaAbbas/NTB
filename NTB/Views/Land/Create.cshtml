@@ -1,97 +1,95 @@
-﻿@model NTB.Land
-
-@{
+﻿@{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_masterpage.cshtml";
+    var landstatus = ViewBag.LandStatuses as List<NTB.LandStatus>;
 }
 
 <h2>Create</h2>
-
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>Land</legend>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Location)
+<div class="row">
+    <div class="col-sm-12">
+        @if (TempData["message"] != null)
+        {
+        <div class="alert alert-success" role="alert">
+            <strong>Great! </strong>@TempData["message"]
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Location)
-            @Html.ValidationMessageFor(model => model.Location)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Address)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Address)
-            @Html.ValidationMessageFor(model => model.Address)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.LandMarks)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.LandMarks)
-            @Html.ValidationMessageFor(model => model.LandMarks)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.AreaSize)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.AreaSize)
-            @Html.ValidationMessageFor(model => model.AreaSize)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PurchasedDate)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PurchasedDate)
-            @Html.ValidationMessageFor(model => model.PurchasedDate)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PurchasedCost)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PurchasedCost)
-            @Html.ValidationMessageFor(model => model.PurchasedCost)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PresentCost)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PresentCost)
-            @Html.ValidationMessageFor(model => model.PresentCost)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.BuildingPermitDate)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.BuildingPermitDate)
-            @Html.ValidationMessageFor(model => model.BuildingPermitDate)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.LandStatusId)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.LandStatusId)
-            @Html.ValidationMessageFor(model => model.LandStatusId)
-        </div>
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+        }
+    </div>
 </div>
+    
+    @using (Html.BeginForm("Create", "Land", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Add New Land</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <div class="box-body">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Location</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" name="location" placeholder="Location" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Address</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" name="address" placeholder="Address" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Land Marks</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" name="landmarks" placeholder="Near by land marks" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Area (Sq. Ft)</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" name="areasize" placeholder="Area in Sq. Ft" type="number">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Date of Purchase</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" name="purchaseddate" type="date">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Cost</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" name="purchasedcost" placeholder="Cost" type="number">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Current Value</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" name="presentcost" placeholder="Current Value" type="number">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Building Permit Date</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" name="buildingpermitdate" type="date">
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label class="col-sm-2 control-label">Land Status</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="landstatusid" id="sel1">
+                                @foreach (var item in landstatus)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button class="btn btn-info">Add Land</button>
+                <button type="submit" class="btn btn-default pull-right">Cancel</button>
+            </div>
+            <!-- /.box-footer -->
+        </div>
+    }

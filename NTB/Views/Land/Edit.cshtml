@@ -1,0 +1,119 @@
+﻿@model NTB.Land
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_masterpage.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Land</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Location)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Location)
+            @Html.ValidationMessageFor(model => model.Location)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LandMarks)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LandMarks)
+            @Html.ValidationMessageFor(model => model.LandMarks)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AreaSize)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AreaSize)
+            @Html.ValidationMessageFor(model => model.AreaSize)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PurchasedDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PurchasedDate)
+            @Html.ValidationMessageFor(model => model.PurchasedDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PurchasedCost)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PurchasedCost)
+            @Html.ValidationMessageFor(model => model.PurchasedCost)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PresentCost)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PresentCost)
+            @Html.ValidationMessageFor(model => model.PresentCost)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BuildingPermitDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BuildingPermitDate)
+            @Html.ValidationMessageFor(model => model.BuildingPermitDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LandStatusId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LandStatusId)
+            @Html.ValidationMessageFor(model => model.LandStatusId)
+        </div>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.AdminId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AdminId)
+            @Html.ValidationMessageFor(model => model.AdminId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CreateDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CreateDate)
+            @Html.ValidationMessageFor(model => model.CreateDate)
+        </div>*@
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Lands")
+</div>
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

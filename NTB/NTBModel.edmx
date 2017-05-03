@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NTBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="NTBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Id" />
@@ -22,9 +22,9 @@
           <Property Name="Name" Type="varchar" MaxLength="512" />
           <Property Name="NoOfFloors" Type="int" />
           <Property Name="NoOfRooms" Type="int" />
-          <Property Name="DateOfConstruction" Type="datetime" />
+          <Property Name="DateOfConstruction" Type="date" />
           <Property Name="ConstructionCost" Type="int" />
-          <Property Name="OccupancyPermitDate" Type="datetime" />
+          <Property Name="OccupancyPermitDate" Type="date" />
           <Property Name="LandId" Type="int" />
           <Property Name="BuildTypeId" Type="int" />
           <Property Name="BuildingStatusId" Type="int" />
@@ -33,14 +33,14 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="512" />
         </EntityType>
         <EntityType Name="BuildingType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="512" />
         </EntityType>
         <EntityType Name="Floors">
@@ -72,16 +72,18 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Location" Type="varchar" MaxLength="512" />
           <Property Name="Address" Type="varchar" MaxLength="512" />
           <Property Name="LandMarks" Type="varchar" MaxLength="512" />
           <Property Name="AreaSize" Type="int" />
-          <Property Name="PurchasedDate" Type="datetime" />
+          <Property Name="PurchasedDate" Type="date" />
           <Property Name="PurchasedCost" Type="int" />
           <Property Name="PresentCost" Type="int" />
-          <Property Name="BuildingPermitDate" Type="datetime" />
+          <Property Name="BuildingPermitDate" Type="date" />
           <Property Name="LandStatusId" Type="int" />
+          <Property Name="AdminId" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="LandStatuses">
           <Key>
@@ -236,6 +238,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Lands_Admin">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="Lands" Type="Self.Lands" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Lands">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Lands_LandStatuses">
           <End Role="LandStatuses" Type="Self.LandStatuses" Multiplicity="0..1" />
           <End Role="Lands" Type="Self.Lands" Multiplicity="*" />
@@ -362,6 +376,10 @@
             <End Role="Lands" EntitySet="Lands" />
             <End Role="LandHistories" EntitySet="LandHistories" />
           </AssociationSet>
+          <AssociationSet Name="FK_Lands_Admin" Association="Self.FK_Lands_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="Lands" EntitySet="Lands" />
+          </AssociationSet>
           <AssociationSet Name="FK_Lands_LandStatuses" Association="Self.FK_Lands_LandStatuses">
             <End Role="LandStatuses" EntitySet="LandStatuses" />
             <End Role="Lands" EntitySet="Lands" />
@@ -391,8 +409,7 @@
             <End Role="Sales" EntitySet="Sales" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NTBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -404,6 +421,7 @@
           <Property Name="Name" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Lands" Relationship="NTBModel.FK_Lands_Admin" FromRole="Admin" ToRole="Land" />
         </EntityType>
         <EntityType Name="Building">
           <Key>
@@ -413,9 +431,9 @@
           <Property Name="Name" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="NoOfFloors" Type="Int32" />
           <Property Name="NoOfRooms" Type="Int32" />
-          <Property Name="DateOfConstruction" Type="DateTime" Precision="3" />
+          <Property Name="DateOfConstruction" Type="DateTime" Precision="0" />
           <Property Name="ConstructionCost" Type="Int32" />
-          <Property Name="OccupancyPermitDate" Type="DateTime" Precision="3" />
+          <Property Name="OccupancyPermitDate" Type="DateTime" Precision="0" />
           <Property Name="LandId" Type="Int32" />
           <Property Name="BuildTypeId" Type="Int32" />
           <Property Name="BuildingStatusId" Type="Int32" />
@@ -479,14 +497,17 @@
           <Property Name="Address" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="LandMarks" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="AreaSize" Type="Int32" />
-          <Property Name="PurchasedDate" Type="DateTime" Precision="3" />
+          <Property Name="PurchasedDate" Type="DateTime" Precision="0" />
           <Property Name="PurchasedCost" Type="Int32" />
           <Property Name="PresentCost" Type="Int32" />
-          <Property Name="BuildingPermitDate" Type="DateTime" Precision="3" />
+          <Property Name="BuildingPermitDate" Type="DateTime" Precision="0" />
           <Property Name="LandStatusId" Type="Int32" />
           <NavigationProperty Name="Buildings" Relationship="Self.FK_Buildings_Lands" FromRole="Lands" ToRole="Buildings" />
           <NavigationProperty Name="LandHistories" Relationship="Self.FK_LandHistories_Lands" FromRole="Lands" ToRole="LandHistories" />
           <NavigationProperty Name="LandStatus" Relationship="Self.FK_Lands_LandStatuses" FromRole="Lands" ToRole="LandStatuses" />
+          <Property Name="AdminId" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Admin" Relationship="NTBModel.FK_Lands_Admin" FromRole="Land" ToRole="Admin" />
         </EntityType>
         <EntityType Name="LandStatus">
           <Key>
@@ -807,7 +828,23 @@
             <End Role="SalesStatuses" EntitySet="SalesStatuses" />
             <End Role="Sales" EntitySet="Sales" />
           </AssociationSet>
+          <AssociationSet Name="FK_Lands_Admin" Association="NTBModel.FK_Lands_Admin">
+            <End Role="Admin" EntitySet="Admins" />
+            <End Role="Land" EntitySet="Lands" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Lands_Admin">
+          <End Type="NTBModel.Admin" Role="Admin" Multiplicity="0..1" />
+          <End Type="NTBModel.Land" Role="Land" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Land">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -887,6 +924,8 @@
           <EntitySetMapping Name="Lands">
             <EntityTypeMapping TypeName="NTBModel.Land">
               <MappingFragment StoreEntitySet="Lands">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
                 <ScalarProperty Name="Address" ColumnName="Address" />

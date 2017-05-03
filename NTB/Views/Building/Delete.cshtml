@@ -1,0 +1,83 @@
+﻿@model NTB.Building
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_masterpage.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Building</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NoOfFloors)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NoOfFloors)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NoOfRooms)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NoOfRooms)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DateOfConstruction)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateOfConstruction)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ConstructionCost)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ConstructionCost)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.OccupancyPermitDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OccupancyPermitDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LandId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LandId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BuildTypeId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BuildTypeId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BuildingStatusId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BuildingStatusId)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "List")
+    </p>
+}

@@ -14,9 +14,16 @@ namespace NTB
     
     public partial class Admin
     {
+        public Admin()
+        {
+            this.Lands = new HashSet<Land>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+    
+        public virtual ICollection<Land> Lands { get; set; }
     }
 }

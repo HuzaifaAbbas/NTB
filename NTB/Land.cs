@@ -30,9 +30,12 @@ namespace NTB
         public Nullable<int> PresentCost { get; set; }
         public Nullable<System.DateTime> BuildingPermitDate { get; set; }
         public Nullable<int> LandStatusId { get; set; }
+        public Nullable<int> AdminId { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
     
         public virtual ICollection<Building> Buildings { get; set; }
         public virtual ICollection<LandHistory> LandHistories { get; set; }
         public virtual LandStatus LandStatus { get; set; }
+        public virtual Admin Admin { get; set; }
     }
 }
