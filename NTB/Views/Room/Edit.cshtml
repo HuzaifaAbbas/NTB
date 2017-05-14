@@ -1,11 +1,11 @@
 ﻿@model NTB.Room
 
 @{
-    ViewBag.Title = "CreateRoom";
+    ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_masterpage.cshtml";
 }
 
-<h2>CreateRoom</h2>
+<h2>Edit</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -13,6 +13,8 @@
 
     <fieldset>
         <legend>Room</legend>
+
+        @Html.HiddenFor(model => model.Id)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.AreaSqFt)
@@ -47,7 +49,7 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Save" />
         </p>
     </fieldset>
 }

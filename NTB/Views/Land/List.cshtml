@@ -1,0 +1,151 @@
+﻿@model IEnumerable<NTB.Land>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_masterpage.cshtml";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@if (TempData["message"] != null)
+{
+<div class="alert alert-danger" role="alert">
+    <strong>Sorry!, </strong> @TempData["message"] 
+</div>    
+}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Location
+                @*@Html.DisplayNameFor(model => model.Location)*@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LandMarks)
+            </th>
+            <th>
+                Area Sq. Ft
+                @*@Html.DisplayNameFor(model => model.AreaSize)*@
+            </th>
+            <th>
+                Purchase Date
+                @*@Html.DisplayNameFor(model => model.PurchasedDate)*@
+            </th>
+            <th>
+                Cost
+                @*@Html.DisplayNameFor(model => model.PurchasedCost)*@
+            </th>
+            <th>
+                Current Value
+                @*@Html.DisplayNameFor(model => model.PresentCost)*@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BuildingPermitDate)
+            </th>
+            <th>
+                Land Status
+                @*@Html.DisplayNameFor(model => model.LandStatusId)*@
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.AdminId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>
+                Location
+                @*@Html.DisplayNameFor(model => model.Location)*@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LandMarks)
+            </th>
+            <th>
+                Area Sq. Ft
+                @*@Html.DisplayNameFor(model => model.AreaSize)*@
+            </th>
+            <th>
+                Purchase Date
+                @*@Html.DisplayNameFor(model => model.PurchasedDate)*@
+            </th>
+            <th>
+                Cost
+                @*@Html.DisplayNameFor(model => model.PurchasedCost)*@
+            </th>
+            <th>
+                Current Value
+                @*@Html.DisplayNameFor(model => model.PresentCost)*@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BuildingPermitDate)
+            </th>
+            <th>
+                Land Status
+                @*@Html.DisplayNameFor(model => model.LandStatusId)*@
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.AdminId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>*@
+            <th></th>
+        </tr>
+    </tfoot>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LandMarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AreaSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PurchasedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PurchasedCost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PresentCost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuildingPermitDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LandStatus.Name)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.AdminId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateDate)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) &nbsp;|&nbsp;
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) &nbsp;|&nbsp;
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

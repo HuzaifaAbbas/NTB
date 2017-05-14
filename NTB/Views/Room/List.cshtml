@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NTB.Floor>
+﻿@model IEnumerable<NTB.Room>
 
 @{
     ViewBag.Title = "List";
@@ -13,16 +13,16 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FloorNo)
+            @Html.DisplayNameFor(model => model.AreaSqFt)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NoOfRooms)
+            @Html.DisplayNameFor(model => model.Cost)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BuildingId)
+            @Html.DisplayNameFor(model => model.FloorId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FloorTypeId)
+            @Html.DisplayNameFor(model => model.RoomTypeId)
         </th>
         <th></th>
     </tr>
@@ -30,16 +30,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.FloorNo)
+            @Html.DisplayFor(modelItem => item.AreaSqFt)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.NoOfRooms)
+            @Html.DisplayFor(modelItem => item.Cost)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Building.Name)
+            @Html.DisplayFor(modelItem => item.FloorId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FloorType.Name)
+            @Html.DisplayFor(modelItem => item.RoomTypeId)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

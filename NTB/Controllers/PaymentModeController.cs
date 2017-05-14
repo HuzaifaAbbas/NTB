@@ -6,38 +6,34 @@ using System.Web.Mvc;
 
 namespace NTB.Controllers
 {
-    public class RoomController : Controller
+    public class PaymentModeController : Controller
     {
         NTBEntities db = new NTBEntities();
 
         //List Done
         public ActionResult List()
         {
-            return View(db.Rooms.ToList());
+            return View(db.PaymentModes.ToList());
         }
 
         //Details Done
         public ActionResult Details(int id = 0)
         {
-            return View(db.Rooms.Find(id));
+            return View(db.PaymentModes.Find(id));
         }
 
         //insert
         public ActionResult Create()
         {
-            var floor = db.Floors.ToList();
-            ViewBag.Floor = floor;
-            var type = db.RoomTypes.ToList();
-            ViewBag.Type = type;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(Room r)
+        public ActionResult Create(PaymentMode pm)
         {
             using (db)
             {
-                db.Rooms.Add(r);
+                db.PaymentModes.Add(pm);
                 db.SaveChanges();
             }
             return RedirectToAction("List");
@@ -46,27 +42,28 @@ namespace NTB.Controllers
         //Update
         public ActionResult Edit(int id = 0)
         {
-            //var floor = db.Floors.ToList();
-            //ViewBag.Floor = floor;
-            //var type = db.RoomTypes.ToList();
-            //ViewBag.Type = type;
-
-            return View(db.Rooms.Find(id));
+            return View(db.PaymentModes.Find(id));
         }
 
         [HttpPost]
-        public ActionResult Edit(Room r)
+        public ActionResult Edit(PaymentMode pm)
         {
-            db.Entry(r).State = System.Data.Entity.EntityState.Modified;
+            db.Entry(pm).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("List");
         }
 
         //Delete
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id = 0)
         {
-            var obj = db.Rooms.Find(id);
-            db.Rooms.Remove(obj);
+            return View(db.PaymentModes.Find(id));
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult delete_conf(int id)
+        {
+            PaymentMode pm = db.PaymentModes.Find(id);
+            db.PaymentModes.Remove(pm);
             db.SaveChanges();
             return RedirectToAction("List");
         }

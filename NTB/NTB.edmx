@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="512" />
           <Property Name="Email" Type="varchar" MaxLength="512" />
           <Property Name="Password" Type="varchar" MaxLength="512" />
@@ -18,10 +18,9 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="512" />
           <Property Name="NoOfFloors" Type="int" />
-          <Property Name="NoOfRooms" Type="int" />
           <Property Name="DateOfConstruction" Type="date" />
           <Property Name="ConstructionCost" Type="int" />
           <Property Name="OccupancyPermitDate" Type="date" />
@@ -47,23 +46,24 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="FloorNo" Type="int" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BuildingId" Type="int" />
           <Property Name="FloorTypeId" Type="int" />
+          <Property Name="FloorNo" Type="int" />
+          <Property Name="NoOfRooms" Type="int" />
         </EntityType>
         <EntityType Name="FloorTypes">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="512" />
         </EntityType>
         <EntityType Name="LandHistories">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Cost" Type="int" />
           <Property Name="UpdateDate" Type="datetime" />
           <Property Name="LandId" Type="int" />
@@ -89,14 +89,14 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="512" />
         </EntityType>
         <EntityType Name="PaymentModes">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="512" />
           <Property Name="NoOfInstallments" Type="int" />
           <Property Name="Interest" Type="float" />
@@ -105,7 +105,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Amount" Type="int" />
           <Property Name="Description" Type="varchar" MaxLength="512" />
           <Property Name="Date" Type="datetime" />
@@ -115,25 +115,25 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="AreaSqFt" Type="int" />
-          <Property Name="Cost" Type="int" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FloorId" Type="int" />
           <Property Name="RoomTypeId" Type="int" />
+          <Property Name="AreaSqFt" Type="int" />
+          <Property Name="Cost" Type="int" />
         </EntityType>
         <EntityType Name="RoomTypes">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="512" />
         </EntityType>
         <EntityType Name="Sales">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Date" Type="datetime" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" />
           <Property Name="BuyerName" Type="varchar" MaxLength="512" />
           <Property Name="BuyerAddress" Type="varchar" MaxLength="512" />
           <Property Name="PriceSqFt" Type="int" />
@@ -145,14 +145,14 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="512" />
         </EntityType>
         <EntityType Name="StampDutyRegistrations">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="512" />
           <Property Name="Charges" Type="int" />
         </EntityType>
@@ -417,20 +417,19 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Lands" Relationship="NTBModel.FK_Lands_Admin" FromRole="Admin" ToRole="Land" />
+          <NavigationProperty Name="Lands" Relationship="Self.FK_Lands_Admin" FromRole="Admin" ToRole="Lands" />
         </EntityType>
         <EntityType Name="Building">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="NoOfFloors" Type="Int32" />
-          <Property Name="NoOfRooms" Type="Int32" />
           <Property Name="DateOfConstruction" Type="DateTime" Precision="0" />
           <Property Name="ConstructionCost" Type="Int32" />
           <Property Name="OccupancyPermitDate" Type="DateTime" Precision="0" />
@@ -446,7 +445,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Buildings" Relationship="Self.FK_Buildings_BuildingStatuses" FromRole="BuildingStatuses" ToRole="Buildings" />
         </EntityType>
@@ -454,7 +453,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Buildings" Relationship="Self.FK_Buildings_BuildingType" FromRole="BuildingType" ToRole="Buildings" />
         </EntityType>
@@ -462,8 +461,9 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FloorNo" Type="Int32" />
+          <Property Name="NoOfRooms" Type="Int32" />
           <Property Name="BuildingId" Type="Int32" />
           <Property Name="FloorTypeId" Type="Int32" />
           <NavigationProperty Name="Building" Relationship="Self.FK_Floors_Buildings" FromRole="Floors" ToRole="Buildings" />
@@ -474,7 +474,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Floors" Relationship="Self.FK_Floors_FloorTypes" FromRole="FloorTypes" ToRole="Floors" />
         </EntityType>
@@ -482,7 +482,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Cost" Type="Int32" />
           <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <Property Name="LandId" Type="Int32" />
@@ -492,7 +492,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Location" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="LandMarks" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
@@ -502,18 +502,18 @@
           <Property Name="PresentCost" Type="Int32" />
           <Property Name="BuildingPermitDate" Type="DateTime" Precision="0" />
           <Property Name="LandStatusId" Type="Int32" />
+          <Property Name="AdminId" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_Lands_Admin" FromRole="Lands" ToRole="Admin" />
           <NavigationProperty Name="Buildings" Relationship="Self.FK_Buildings_Lands" FromRole="Lands" ToRole="Buildings" />
           <NavigationProperty Name="LandHistories" Relationship="Self.FK_LandHistories_Lands" FromRole="Lands" ToRole="LandHistories" />
           <NavigationProperty Name="LandStatus" Relationship="Self.FK_Lands_LandStatuses" FromRole="Lands" ToRole="LandStatuses" />
-          <Property Name="AdminId" Type="Int32" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Admin" Relationship="NTBModel.FK_Lands_Admin" FromRole="Land" ToRole="Admin" />
         </EntityType>
         <EntityType Name="LandStatus">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Lands" Relationship="Self.FK_Lands_LandStatuses" FromRole="LandStatuses" ToRole="Lands" />
         </EntityType>
@@ -521,7 +521,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="NoOfInstallments" Type="Int32" />
           <Property Name="Interest" Type="Double" />
@@ -531,7 +531,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Amount" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="Date" Type="DateTime" Precision="3" />
@@ -542,7 +542,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AreaSqFt" Type="Int32" />
           <Property Name="Cost" Type="Int32" />
           <Property Name="FloorId" Type="Int32" />
@@ -555,7 +555,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Rooms" Relationship="Self.FK_Rooms_RoomTypes" FromRole="RoomTypes" ToRole="Rooms" />
         </EntityType>
@@ -563,8 +563,8 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="BuyerName" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="BuyerAddress" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="PriceSqFt" Type="Int32" />
@@ -580,7 +580,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Sales" Relationship="Self.FK_Sales_SalesStatuses" FromRole="SalesStatuses" ToRole="Sales" />
         </EntityType>
@@ -588,7 +588,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="Charges" Type="Int32" />
         </EntityType>
@@ -602,6 +602,18 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <Association Name="FK_Lands_Admin">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="Lands" Type="Self.Land" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Lands">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Buildings_BuildingStatuses">
           <End Role="BuildingStatuses" Type="Self.BuildingStatus" Multiplicity="0..1" />
           <End Role="Buildings" Type="Self.Building" Multiplicity="*" />
@@ -758,7 +770,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="NTBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="NTBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admins" EntityType="Self.Admin" />
           <EntitySet Name="Buildings" EntityType="Self.Building" />
           <EntitySet Name="BuildingStatuses" EntityType="Self.BuildingStatus" />
@@ -776,6 +788,10 @@
           <EntitySet Name="SalesStatuses" EntityType="Self.SalesStatus" />
           <EntitySet Name="StampDutyRegistrations" EntityType="Self.StampDutyRegistration" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_Lands_Admin" Association="Self.FK_Lands_Admin">
+            <End Role="Admin" EntitySet="Admins" />
+            <End Role="Lands" EntitySet="Lands" />
+          </AssociationSet>
           <AssociationSet Name="FK_Buildings_BuildingStatuses" Association="Self.FK_Buildings_BuildingStatuses">
             <End Role="BuildingStatuses" EntitySet="BuildingStatuses" />
             <End Role="Buildings" EntitySet="Buildings" />
@@ -828,29 +844,13 @@
             <End Role="SalesStatuses" EntitySet="SalesStatuses" />
             <End Role="Sales" EntitySet="Sales" />
           </AssociationSet>
-          <AssociationSet Name="FK_Lands_Admin" Association="NTBModel.FK_Lands_Admin">
-            <End Role="Admin" EntitySet="Admins" />
-            <End Role="Land" EntitySet="Lands" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_Lands_Admin">
-          <End Type="NTBModel.Admin" Role="Admin" Multiplicity="0..1" />
-          <End Type="NTBModel.Land" Role="Land" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Admin">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Land">
-              <PropertyRef Name="AdminId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NTBModelStoreContainer" CdmEntityContainer="NTBEntities">
+        <EntityContainerMapping StorageEntityContainer="NTBModelStoreContainer" CdmEntityContainer="NTBEntities1">
           <EntitySetMapping Name="Admins">
             <EntityTypeMapping TypeName="NTBModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
@@ -867,7 +867,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="NoOfFloors" ColumnName="NoOfFloors" />
-                <ScalarProperty Name="NoOfRooms" ColumnName="NoOfRooms" />
                 <ScalarProperty Name="DateOfConstruction" ColumnName="DateOfConstruction" />
                 <ScalarProperty Name="ConstructionCost" ColumnName="ConstructionCost" />
                 <ScalarProperty Name="OccupancyPermitDate" ColumnName="OccupancyPermitDate" />
@@ -898,6 +897,7 @@
               <MappingFragment StoreEntitySet="Floors">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FloorNo" ColumnName="FloorNo" />
+                <ScalarProperty Name="NoOfRooms" ColumnName="NoOfRooms" />
                 <ScalarProperty Name="BuildingId" ColumnName="BuildingId" />
                 <ScalarProperty Name="FloorTypeId" ColumnName="FloorTypeId" />
               </MappingFragment>
@@ -924,8 +924,6 @@
           <EntitySetMapping Name="Lands">
             <EntityTypeMapping TypeName="NTBModel.Land">
               <MappingFragment StoreEntitySet="Lands">
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -936,6 +934,8 @@
                 <ScalarProperty Name="PresentCost" ColumnName="PresentCost" />
                 <ScalarProperty Name="BuildingPermitDate" ColumnName="BuildingPermitDate" />
                 <ScalarProperty Name="LandStatusId" ColumnName="LandStatusId" />
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

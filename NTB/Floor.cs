@@ -21,6 +21,7 @@ namespace NTB
     
         public int Id { get; set; }
         public Nullable<int> FloorNo { get; set; }
+        public Nullable<int> NoOfRooms { get; set; }
         public Nullable<int> BuildingId { get; set; }
         public Nullable<int> FloorTypeId { get; set; }
     

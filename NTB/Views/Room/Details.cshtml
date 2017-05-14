@@ -1,4 +1,4 @@
-﻿@model NTB.Floor
+﻿@model NTB.Room
 
 @{
     ViewBag.Title = "Details";
@@ -8,34 +8,34 @@
 <h2>Details</h2>
 
 <fieldset>
-    <legend>Floor</legend>
+    <legend>Room</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.FloorNo)
+         @Html.DisplayNameFor(model => model.AreaSqFt)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.FloorNo)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.NoOfRooms)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.NoOfRooms)
+        @Html.DisplayFor(model => model.AreaSqFt)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.BuildingId)
+         @Html.DisplayNameFor(model => model.Cost)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Building.Name)
+        @Html.DisplayFor(model => model.Cost)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.FloorTypeId)
+         @Html.DisplayNameFor(model => model.FloorId)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.FloorType.Name)
+        @Html.DisplayFor(model => model.FloorId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RoomTypeId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RoomTypeId)
     </div>
 </fieldset>
 <p>

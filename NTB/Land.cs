@@ -11,7 +11,7 @@ namespace NTB
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Land
     {
         public Land()
@@ -19,23 +19,60 @@ namespace NTB
             this.Buildings = new HashSet<Building>();
             this.LandHistories = new HashSet<LandHistory>();
         }
-    
+
+        [ScaffoldColumn(false)]
         public int Id { get; set; }
+
+        [Display(Name = "Location Name")]
+        [Required(ErrorMessage = "this field is required")]
+        [StringLength(200, MinimumLength = 10)]
         public string Location { get; set; }
+
+        [Display(Name = "Address")]
+        [Required(ErrorMessage = "this field is required")]
+        [StringLength(200, MinimumLength = 10)]
         public string Address { get; set; }
+
+        [Display(Name = "Nearby Landmarks")]
+        [Required(ErrorMessage = "this field is required")]
+        [StringLength(50, MinimumLength = 10)]
         public string LandMarks { get; set; }
+
+        [Display(Name = "Area Size (Sq. Ft)")]
+        [Required(ErrorMessage = "this field is required")]
+        [Range(0, int.MaxValue, ErrorMessage = "Please Enter a valid number")]
         public Nullable<int> AreaSize { get; set; }
+
+        [Display(Name = "Date of Purchase")]
+        [Required(ErrorMessage = "this field is required")]
+        [DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> PurchasedDate { get; set; }
+
+        [Display(Name = "Purchased Cost")]
+        [Range(0, int.MaxValue, ErrorMessage = "Please Enter a valid number")]
         public Nullable<int> PurchasedCost { get; set; }
+
+        [Display(Name = "Current Value")]
+        [Range(0, int.MaxValue, ErrorMessage = "Please Enter a valid number")]
+        //[DataType(DataType.Currency)]
         public Nullable<int> PresentCost { get; set; }
+
+        [Display(Name = "Building Permit Date")]
+        [Required(ErrorMessage = "this field is required")]
+        [DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> BuildingPermitDate { get; set; }
+
         public Nullable<int> LandStatusId { get; set; }
+
         public Nullable<int> AdminId { get; set; }
+
         public Nullable<System.DateTime> CreateDate { get; set; }
     
+        public virtual Admin Admin { get; set; }
         public virtual ICollection<Building> Buildings { get; set; }
         public virtual ICollection<LandHistory> LandHistories { get; set; }
         public virtual LandStatus LandStatus { get; set; }
-        public virtual Admin Admin { get; set; }
     }
 }

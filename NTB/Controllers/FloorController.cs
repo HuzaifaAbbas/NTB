@@ -25,6 +25,10 @@ namespace NTB.Controllers
         //insert
         public ActionResult Create()
         {
+            var building = db.Buildings.ToList();
+            ViewBag.Building = building;
+            var type = db.FloorTypes.ToList();
+            ViewBag.Type = type;
             return View();
         }
 
@@ -34,7 +38,7 @@ namespace NTB.Controllers
             using (db)
             {
                 db.Floors.Add(f);
-                //db.SaveChanges();
+                db.SaveChanges();
             }
             return RedirectToAction("List");
         }
@@ -42,6 +46,11 @@ namespace NTB.Controllers
         //Update
         public ActionResult Edit(int id = 0)
         {
+            var building = db.Buildings.ToList();
+            ViewBag.Building = building;
+            var type = db.FloorTypes.ToList();
+            ViewBag.Type = type;
+
             return View(db.Floors.Find(id));
         }
 
@@ -54,19 +63,22 @@ namespace NTB.Controllers
         }
 
         //Delete
-        public ActionResult Delete(int id = 0)
+        public ActionResult Delete(int id)
         {
-            return View(db.Floors.Find(id));
-        }
-
-        [HttpPost, ActionName("Delete")]
-        public ActionResult delete_conf(int id)
-        {
-            Floor f = db.Floors.Find(id);
-            db.Floors.Remove(f);
+            var obj = db.Floors.Find(id);
+            db.Floors.Remove(obj);
             db.SaveChanges();
             return RedirectToAction("List");
         }
+
+        //[HttpPost, ActionName("Delete")]
+        //public ActionResult delete_conf(int id)
+        //{
+        //    Floor f = db.Floors.Find(id);
+        //    db.Floors.Remove(f);
+        //    db.SaveChanges();
+        //    return RedirectToAction("List");
+        //}
 
     }
 }

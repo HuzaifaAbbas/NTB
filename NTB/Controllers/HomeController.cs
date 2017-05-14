@@ -8,13 +8,10 @@ namespace NTB.Controllers
 {
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/
-
         public ActionResult Index()
         {
-            if (Session["aid"] == null)
-                return RedirectToAction("Login", "Account");
+            //if (Session["aid"] == null)
+            //    return RedirectToAction("Login", "Account");
             return View();
         }
 

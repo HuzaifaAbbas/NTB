@@ -11,23 +11,47 @@ namespace NTB
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Building
     {
         public Building()
         {
             this.Floors = new HashSet<Floor>();
         }
-    
+
+        [ScaffoldColumn(false)]
         public int Id { get; set; }
+
+        [Display(Name = "Building Name")]
+        [Required(ErrorMessage = "Building Name is required")]
+        [StringLength(50, MinimumLength = 10)]
         public string Name { get; set; }
+
+        [Display(Name = "No of Floors")]
+        [Required(ErrorMessage = "No of floors is required")]
+        [Range(0, int.MaxValue, ErrorMessage = "Please Enter a valid number")]
         public Nullable<int> NoOfFloors { get; set; }
-        public Nullable<int> NoOfRooms { get; set; }
+
+        [Display(Name = "Construction Date")]
+        [Required(ErrorMessage = "Construction Date is required")]
+        [DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DateOfConstruction { get; set; }
+
+        [Display(Name = "Construction Cost")]
+        [Range(0, int.MaxValue, ErrorMessage = "Please Enter a valid number")]
+        //[DataType(DataType.Currency)]
         public Nullable<int> ConstructionCost { get; set; }
+
+        [Display(Name = "Occupancy Permit Date")]
+        [DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> OccupancyPermitDate { get; set; }
+
         public Nullable<int> LandId { get; set; }
+
         public Nullable<int> BuildTypeId { get; set; }
+
         public Nullable<int> BuildingStatusId { get; set; }
     
         public virtual BuildingStatus BuildingStatus { get; set; }

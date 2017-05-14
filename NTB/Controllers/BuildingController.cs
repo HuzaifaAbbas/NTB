@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using NTB.Models;
 
 namespace NTB.Controllers
 {
@@ -26,14 +26,22 @@ namespace NTB.Controllers
         //insert
         public ActionResult Create()
         {
+            var land = db.Lands.ToList();
+            ViewBag.Land = land;
+            var status = db.BuildingStatuses.ToList();
+            ViewBag.Status = status;
+            var type = db.BuildingTypes.ToList();
+            ViewBag.Type = type;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(Building b)
+        public ActionResult Create(Building b, int BuildingStatusId, int BuildTypeId)
         {
             using (db)
             {
+                b.BuildingStatusId = BuildingStatusId;
+                b.BuildTypeId = BuildTypeId;
                 db.Buildings.Add(b);
                 db.SaveChanges();
             }
@@ -41,19 +49,30 @@ namespace NTB.Controllers
         }
 
         //Update
-        public ActionResult Edit(int id =0)
+        public ActionResult Edit(int id = 0)
         {
+            var land = db.Lands.ToList();
+            ViewBag.Land = land;
             return View(db.Buildings.Find(id));
         }
 
         [HttpPost]
         public ActionResult Edit(Building b)
         {
-            db.Entry(b).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("List");
+            try
+            {
+                db.Entry(b).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("List");
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+            {
+                TempData["message"] = "Land Not Found";
+                return RedirectToAction("Edit");
+            }
+            
         }
-        
+
         //Delete
         public ActionResult Delete(int id = 0)
         {

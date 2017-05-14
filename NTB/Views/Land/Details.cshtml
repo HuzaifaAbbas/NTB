@@ -1,0 +1,93 @@
+﻿@model NTB.Land
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_masterpage.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Land</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Location)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Location)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LandMarks)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LandMarks)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AreaSize)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AreaSize)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PurchasedDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PurchasedDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PurchasedCost)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PurchasedCost)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PresentCost)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PresentCost)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BuildingPermitDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BuildingPermitDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LandStatusId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LandStatusId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AdminId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AdminId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreateDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreateDate)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "List")
+</p>

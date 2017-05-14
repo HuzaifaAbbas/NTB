@@ -124,81 +124,86 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin.cs">
-      <DependentUpon>NTBModel.tt</DependentUpon>
+      <DependentUpon>NTB.tt</DependentUpon>
     </Compile>
     <Compile Include="Building.cs">
-      <DependentUpon>NTBModel.tt</DependentUpon>
+      <DependentUpon>NTB.tt</DependentUpon>
     </Compile>
     <Compile Include="BuildingStatus.cs">
-      <DependentUpon>NTBModel.tt</DependentUpon>
+      <DependentUpon>NTB.tt</DependentUpon>
     </Compile>
     <Compile Include="BuildingType.cs">
-      <DependentUpon>NTBModel.tt</DependentUpon>
+      <DependentUpon>NTB.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BuildingController.cs" />
     <Compile Include="Controllers\FloorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LandController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\PaymentModeController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
+    <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Floor.cs">
-      <DependentUpon>NTBModel.tt</DependentUpon>
+      <DependentUpon>NTB.tt</DependentUpon>
     </Compile>
     <Compile Include="FloorType.cs">
-      <DependentUpon>NTBModel.tt</DependentUpon>
+      <DependentUpon>NTB.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Land.cs">
-      <DependentUpon>NTBModel.tt</DependentUpon>
+      <DependentUpon>NTB.tt</DependentUpon>
     </Compile>
     <Compile Include="LandHistory.cs">
-      <DependentUpon>NTBModel.tt</DependentUpon>
+      <DependentUpon>NTB.tt</DependentUpon>
     </Compile>
     <Compile Include="LandStatus.cs">
-      <DependentUpon>NTBModel.tt</DependentUpon>
+      <DependentUpon>NTB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Pagination.cs" />
-    <Compile Include="NTBModel.Context.cs">
+    <Compile Include="Models\buildingmodel.cs" />
+    <Compile Include="Models\floormodel.cs" />
+    <Compile Include="Models\landmodel.cs" />
+    <Compile Include="NTB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NTBModel.Context.tt</DependentUpon>
+      <DependentUpon>NTB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="NTBModel.cs">
+    <Compile Include="NTB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NTBModel.tt</DependentUpon>
+      <DependentUpon>NTB.tt</DependentUpon>
     </Compile>
-    <Compile Include="NTBModel.Designer.cs">
+    <Compile Include="NTB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NTBModel.edmx</DependentUpon>
+      <DependentUpon>NTB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Payment.cs">
-      <DependentUpon>NTBModel.tt</DependentUpon>
+      <DependentUpon>NTB.tt</DependentUpon>
     </Compile>
     <Compile Include="PaymentMode.cs">
-      <DependentUpon>NTBModel.tt</DependentUpon>
+      <DependentUpon>NTB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Room.cs">
-      <DependentUpon>NTBModel.tt</DependentUpon>
+      <DependentUpon>NTB.tt</DependentUpon>
     </Compile>
     <Compile Include="RoomType.cs">
-      <DependentUpon>NTBModel.tt</DependentUpon>
+      <DependentUpon>NTB.tt</DependentUpon>
     </Compile>
     <Compile Include="Sale.cs">
-      <DependentUpon>NTBModel.tt</DependentUpon>
+      <DependentUpon>NTB.tt</DependentUpon>
     </Compile>
     <Compile Include="SalesStatus.cs">
-      <DependentUpon>NTBModel.tt</DependentUpon>
+      <DependentUpon>NTB.tt</DependentUpon>
     </Compile>
     <Compile Include="StampDutyRegistration.cs">
-      <DependentUpon>NTBModel.tt</DependentUpon>
+      <DependentUpon>NTB.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagram.cs">
-      <DependentUpon>NTBModel.tt</DependentUpon>
+      <DependentUpon>NTB.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -1085,6 +1090,7 @@
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1233,43 +1239,32 @@
     <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="NTBModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NTBModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="NTBModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NTBModel.edmx</DependentUpon>
-      <LastGenOutput>NTBModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="NTBModel.edmx.diagram">
-      <DependentUpon>NTBModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="NTBModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NTBModel.edmx</DependentUpon>
-      <LastGenOutput>NTBModel.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Room\CreateRoom.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Land\Lands.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Land\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Building\List.cshtml" />
+    <EntityDeploy Include="NTB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NTB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NTB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NTB.edmx</DependentUpon>
+      <LastGenOutput>NTB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="NTB.edmx.diagram">
+      <DependentUpon>NTB.edmx</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="NTB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NTB.edmx</DependentUpon>
+      <LastGenOutput>NTB.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Building\Details.cshtml" />
@@ -1279,6 +1274,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Building\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Building\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Building\Delete.cshtml" />
@@ -1296,10 +1294,28 @@
     <Content Include="Views\Floor\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Floor\Delete.cshtml" />
+    <Content Include="Views\Land\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Land\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Land\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Land\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Room\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Room\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Room\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Room\Edit.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

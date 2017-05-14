@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_masterpage.cshtml";
+    var status = ViewBag.Status as List<NTB.BuildingStatus>;
+    var type = ViewBag.Type as List<NTB.BuildingType>;
+    var land = ViewBag.Land as List<NTB.Land>;
 }
 
 <h2>Create</h2>
@@ -28,14 +31,6 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.NoOfFloors)
             @Html.ValidationMessageFor(model => model.NoOfFloors)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.NoOfRooms)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.NoOfRooms)
-            @Html.ValidationMessageFor(model => model.NoOfRooms)
         </div>
 
         <div class="editor-label">
@@ -65,26 +60,44 @@
         <div class="editor-label">
             @Html.LabelFor(model => model.LandId)
         </div>
-        <div class="editor-field">
+        <select required name="LandId">
+            @foreach (var item in land)
+            {
+                <option value="@item.Id">@item.Location</option>
+            }
+        </select>
+        @*<div class="editor-field">
             @Html.EditorFor(model => model.LandId)
             @Html.ValidationMessageFor(model => model.LandId)
-        </div>
+        </div>*@
 
         <div class="editor-label">
             @Html.LabelFor(model => model.BuildTypeId)
         </div>
-        <div class="editor-field">
+        <select required name="BuildTypeId">
+            @foreach (var item in type)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+        @*<div class="editor-field">
             @Html.EditorFor(model => model.BuildTypeId)
             @Html.ValidationMessageFor(model => model.BuildTypeId)
-        </div>
+        </div>*@
 
         <div class="editor-label">
             @Html.LabelFor(model => model.BuildingStatusId)
         </div>
-        <div class="editor-field">
+        <select required name="BuildingStatusId">
+            @foreach (var item in status)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+        @*@<div class="editor-field">
             @Html.EditorFor(model => model.BuildingStatusId)
             @Html.ValidationMessageFor(model => model.BuildingStatusId)
-        </div>
+        </div>*@
 
         <p>
             <input type="submit" value="Create" />
@@ -93,9 +106,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "List")
 </div>
-
-@*@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}*@

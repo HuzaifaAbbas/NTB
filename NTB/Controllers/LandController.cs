@@ -4,98 +4,106 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NTB.Models;
-using System.Data.Entity;
 namespace NTB.Controllers
 {
     public class LandController : Controller
     {
         NTBEntities db = new NTBEntities();
-        //Create land Action starts here
+
+        //List Done
+        public ActionResult List()
+        {
+            return View(db.Lands.ToList());
+        }
+
+        //Details Done
+        public ActionResult Details(int id = 0)
+        {
+            return View(db.Lands.Find(id));
+        }
+
+        //insert
         public ActionResult Create()
         {
-            var landstatus = db.LandStatuses.ToList();
-
-            ViewBag.LandStatuses = landstatus;
-
+            var status = db.LandStatuses.ToList();
+            ViewBag.Status = status;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(Land l, int landstatusid
-            //string location,
-            //string address,
-            //string landmarks,
-            //int areasize,
-            //DateTime purchasedate,
-            //int cost,
-            //int currentvalue,
-            //DateTime permitdate
-            ////int landstatusid
-            )
+        public ActionResult Create(Land l, int LandStatusId)
         {
-            //Land l = new Land();
-
-            //l.Location = location;
-            //l.Address = address;
-            //l.LandMarks = landmarks;
-            //l.AreaSize = areasize;
-            //l.PurchasedDate = purchasedate;
-            //l.PurchasedCost = cost;
-            //l.PresentCost = currentvalue;
-            //l.BuildingPermitDate = permitdate;
-            l.LandStatusId = landstatusid;
-            //l.AdminId = Convert.ToInt32(Session["aid"]);
-            //l.CreateDate = DateTime.Now;
-            //db.Lands.Add(l);
-            //db.SaveChanges();
-            using (db)
+            try
             {
-                db.Lands.Add(l);
-                l.AdminId = Convert.ToInt32(Session["aid"]);
-                l.CreateDate = DateTime.Now;
-                db.SaveChanges();
+                using (db)
+                {
+                    l.LandStatusId = LandStatusId;
+                    l.AdminId = Convert.ToInt32(Session["aid"]);
+                    l.CreateDate = DateTime.Now;
+                    db.Lands.Add(l);
+                    db.SaveChanges();
+                }
             }
-            TempData["message"] = "Land has been added to list.";
-            return RedirectToAction("Land");
+            catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+            {
+                
+                throw;
+            }
+            return RedirectToAction("List");
         }
 
-            //List of lands
-        public ActionResult Lands()
+        //Update
+        public ActionResult Edit(int id = 0)
         {
-            List<Land> lands = db.Lands.ToList();
-
-            Pagination pg = new Pagination();
-            pg.Lands = lands;
-
-            return View(pg);
-        }
-
-        public ActionResult Delete(int Id)
-        {
-            var obj = db.Lands.Find(Id);
-            db.Lands.Remove(obj);
-            db.SaveChanges();
-            return RedirectToAction("Lands");
-        }
-
-        public ActionResult Edit(int id)
-        {
-            Land l = db.Lands.Find(id);
-            return View(l);
+            var status = db.LandStatuses.ToList();
+            ViewBag.Status = status;
+            return View(db.Lands.Find(id));
         }
 
         [HttpPost]
         public ActionResult Edit(Land l)
         {
-            if (ModelState.IsValid)
+
+            try
             {
-                db.Entry(l).State = EntityState.Modified;
+                db.Entry(l).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Lands");
             }
-            return View(l);
+            catch (System.Data.Entity.Validation.DbEntityValidationException e)
+            {
+                foreach (var item in e.EntityValidationErrors)
+                {
+                   // 
+                }
+                throw;
+            }
+            return RedirectToAction("List");
         }
 
+        //Delete
+        public ActionResult Delete(int id)
+        {
 
+            try
+            {
+                var obj = db.Lands.Find(id);
+                db.Lands.Remove(obj);
+                db.SaveChanges();
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+            {
+                @TempData["message"] = " land might be associated with a building.";
+            }
+            return RedirectToAction("List");
+        }
+
+        //[HttpPost, ActionName("Delete")]
+        //public ActionResult delete_conf(int id)
+        //{
+        //    Land l = db.Lands.Find(id);
+        //    db.Lands.Remove(l);
+        //    db.SaveChanges();
+        //    return RedirectToAction("List");
+        //}
     }
 }

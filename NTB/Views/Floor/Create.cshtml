@@ -3,12 +3,13 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_masterpage.cshtml";
+    var building = ViewBag.Building as List<NTB.Building>;
+    var type = ViewBag.Type as List<NTB.FloorType>;
 }
 
 <h2>Create</h2>
 
-@using (Html.BeginForm())
-{
+@using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -24,20 +25,40 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.BuildingId)
+            @Html.LabelFor(model => model.NoOfRooms)
         </div>
         <div class="editor-field">
+            @Html.EditorFor(model => model.NoOfRooms)
+            @Html.ValidationMessageFor(model => model.NoOfRooms)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BuildingId)
+        </div>
+        <select required name="BuildingId">
+            @foreach (var item in building)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+        @*<div class="editor-field">
             @Html.EditorFor(model => model.BuildingId)
             @Html.ValidationMessageFor(model => model.BuildingId)
-        </div>
+        </div>*@
 
         <div class="editor-label">
             @Html.LabelFor(model => model.FloorTypeId)
         </div>
-        <div class="editor-field">
+        <select required name="FloorTypeId">
+            @foreach (var item in type)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+        @*<div class="editor-field">
             @Html.EditorFor(model => model.FloorTypeId)
             @Html.ValidationMessageFor(model => model.FloorTypeId)
-        </div>
+        </div>*@
 
         <p>
             <input type="submit" value="Create" />
@@ -48,7 +69,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@*@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}*@
