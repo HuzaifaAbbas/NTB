@@ -1320,6 +1320,18 @@
   <ItemGroup>
     <Content Include="Views\Sale\Create.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PaymentMode\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PaymentMode\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PaymentMode\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PaymentMode\Edit.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

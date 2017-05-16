@@ -56,16 +56,10 @@ namespace NTB.Controllers
         //Delete
         public ActionResult Delete(int id = 0)
         {
-            return View(db.PaymentModes.Find(id));
-        }
-
-        [HttpPost, ActionName("Delete")]
-        public ActionResult delete_conf(int id)
-        {
-            PaymentMode pm = db.PaymentModes.Find(id);
-            db.PaymentModes.Remove(pm);
+            var obj = db.PaymentModes.Find(id);
+            db.PaymentModes.Remove(obj);
             db.SaveChanges();
             return RedirectToAction("List");
-        }
+         }
     }
 }

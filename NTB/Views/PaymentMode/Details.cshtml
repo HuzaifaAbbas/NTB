@@ -1,0 +1,37 @@
+﻿@model NTB.PaymentMode
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_masterpage.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>PaymentMode</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NoOfInstallments)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NoOfInstallments)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Interest)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Interest)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "List")
+</p>
