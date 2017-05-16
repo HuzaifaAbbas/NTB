@@ -10,8 +10,8 @@ namespace NTB.Controllers
     {
         public ActionResult Index()
         {
-            //if (Session["aid"] == null)
-            //    return RedirectToAction("Login", "Account");
+            if (Session["aid"] == null)
+                return RedirectToAction("login", "account");
             return View();
         }
 

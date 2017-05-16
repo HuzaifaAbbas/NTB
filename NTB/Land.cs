@@ -25,17 +25,17 @@ namespace NTB
 
         [Display(Name = "Location Name")]
         [Required(ErrorMessage = "this field is required")]
-        [StringLength(200, MinimumLength = 10)]
+        [StringLength(200, MinimumLength = 5)]
         public string Location { get; set; }
 
         [Display(Name = "Address")]
         [Required(ErrorMessage = "this field is required")]
-        [StringLength(200, MinimumLength = 10)]
+        [StringLength(200, MinimumLength = 5)]
         public string Address { get; set; }
 
         [Display(Name = "Nearby Landmarks")]
         [Required(ErrorMessage = "this field is required")]
-        [StringLength(50, MinimumLength = 10)]
+        [StringLength(50, MinimumLength = 5)]
         public string LandMarks { get; set; }
 
         [Display(Name = "Area Size (Sq. Ft)")]

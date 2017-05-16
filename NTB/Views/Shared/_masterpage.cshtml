@@ -1,6 +1,9 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+
+    <script src="@Url.Content("~/Content/Assets/")plugins/jQuery/jquery-2.2.3.min.js"></script>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>NTB | Dashboard</title>
@@ -29,6 +32,8 @@
     @*<link rel="stylesheet" href="@Url.Content("~/Content/Assets/")plugins/daterangepicker/daterangepicker.css">*@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="@Url.Content("~/Content/Assets/")plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -342,8 +347,8 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Lands","Land")"><i class="fa fa-circle-o"></i>Lands</a></li>
-                            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Land Status</a></li>
+                            <li><a href="@Url.Action("List", "Land")"><i class="fa fa-circle-o"></i>Lands</a></li>
+                            @*<li><a href="index2.html"><i class="fa fa-circle-o"></i> Land Status</a></li>*@
                         </ul>
                     </li>
                     <li class="treeview">
@@ -354,9 +359,9 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Create","Building")"><i class="fa fa-circle-o"></i> Building</a></li>
-                            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Building Types</a></li>
-                            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Building Status</a></li>
+                            <li><a href="@Url.Action("List","Building")"><i class="fa fa-circle-o"></i> Building</a></li>
+                            @*<li><a href="index2.html"><i class="fa fa-circle-o"></i> Building Types</a></li>
+                            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Building Status</a></li>*@
                         </ul>
                     </li>
                     <li class="treeview">
@@ -367,8 +372,8 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="@Url.Action("CreateFloor","Floor")"><i class="fa fa-circle-o"></i> Floors</a></li>
-                            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Floor Types</a></li>
+                            <li><a href="@Url.Action("Create","Floor")"><i class="fa fa-circle-o"></i> Floors</a></li>
+                            @*<li><a href="index2.html"><i class="fa fa-circle-o"></i> Floor Types</a></li>*@
                         </ul>
                     </li>
                     <li class="treeview">
@@ -379,7 +384,7 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="@Url.Action("CreateRoom","Room")"><i class="fa fa-circle-o"></i> Rooms</a></li>
+                            <li><a href="@Url.Action("Create","Room")"><i class="fa fa-circle-o"></i> Rooms</a></li>
                             <li><a href="index2.html"><i class="fa fa-circle-o"></i> Room Types</a></li>
                         </ul>
                     </li>
@@ -638,7 +643,6 @@
     </div>
     <!-- ./wrapper -->
     <!-- jQuery 2.2.3 -->
-    <script src="@Url.Content("~/Content/Assets/")plugins/jQuery/jquery-2.2.3.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

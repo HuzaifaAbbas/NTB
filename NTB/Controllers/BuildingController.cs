@@ -67,7 +67,7 @@ namespace NTB.Controllers
             }
             catch (System.Data.Entity.Infrastructure.DbUpdateException e)
             {
-                TempData["message"] = "Land Not Found";
+                TempData["message"] = "Land Not Found" +e;
                 return RedirectToAction("Edit");
             }
             

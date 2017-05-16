@@ -16,6 +16,14 @@ namespace NTB.Controllers
             return View(db.Lands.ToList());
         }
 
+        //public ActionResult ListofBuilding()
+        //{
+        //    List<Building> buildings = db.Buildings.ToList();
+
+        //    buildings = db.Buildings.Where(x => x.LandId.Equals(buildings.)).ToList();
+        //    return View();
+        //}
+
         //Details Done
         public ActionResult Details(int id = 0)
         {
@@ -44,10 +52,23 @@ namespace NTB.Controllers
                     db.SaveChanges();
                 }
             }
-            catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+            catch (System.Data.Entity.Validation.DbEntityValidationException e)
             {
-                
-                throw;
+                Exception raise = e;
+                foreach (var validationErrors in e.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string message = string.Format("{0}:{1}",
+                            validationErrors.Entry.Entity.ToString(),
+                            validationError.ErrorMessage);
+                        // raise a new exception nesting
+                        // the current instance as InnerException
+                        raise = new InvalidOperationException(message, raise);
+                    }
+                }
+                throw raise;
+                //TempData["message"] = "Something is wrong! " + e;
             }
             return RedirectToAction("List");
         }
@@ -83,7 +104,6 @@ namespace NTB.Controllers
         //Delete
         public ActionResult Delete(int id)
         {
-
             try
             {
                 var obj = db.Lands.Find(id);
@@ -92,7 +112,7 @@ namespace NTB.Controllers
             }
             catch (System.Data.Entity.Infrastructure.DbUpdateException e)
             {
-                @TempData["message"] = " land might be associated with a building.";
+                @TempData["message"] = " land might be associated with a building. " +e;
             }
             return RedirectToAction("List");
         }

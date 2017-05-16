@@ -14,7 +14,12 @@
 
     <fieldset>
         <legend>Land</legend>
-
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                <strong>Sorry!, </strong> @TempData["message"]
+            </div>
+        }
         <div class="editor-label">
             @Html.LabelFor(model => model.Location)
         </div>

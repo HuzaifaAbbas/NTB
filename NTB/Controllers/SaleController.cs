@@ -33,6 +33,7 @@ namespace NTB.Controllers
         {
             using (db)
             {
+                //s.Date = DateTime.Now;
                 db.Sales.Add(s);
                 db.SaveChanges();
             }

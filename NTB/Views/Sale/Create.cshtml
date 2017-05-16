@@ -1,0 +1,88 @@
+﻿@model NTB.Sale
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_masterpage.cshtml";
+}
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Sale</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Date)
+        </div>
+        <strong>
+            <label><span id="date"></span></label>
+        </strong>
+        <script>
+            var today = new Date();
+            today.setFullYear(2017, 20, 4);
+            document.getElementById('date').innerHTML = today;
+        </script>
+        @*<div class="editor-field">
+            @Html.EditorFor(model => model.Date)
+            @Html.ValidationMessageFor(model => model.Date)
+        </div>*@
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BuyerName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BuyerName)
+            @Html.ValidationMessageFor(model => model.BuyerName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BuyerAddress)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BuyerAddress)
+            @Html.ValidationMessageFor(model => model.BuyerAddress)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PriceSqFt)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PriceSqFt)
+            @Html.ValidationMessageFor(model => model.PriceSqFt)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PaymentModeId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PaymentModeId)
+            @Html.ValidationMessageFor(model => model.PaymentModeId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SalesStatusId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SalesStatusId)
+            @Html.ValidationMessageFor(model => model.SalesStatusId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RoomId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RoomId)
+            @Html.ValidationMessageFor(model => model.RoomId)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

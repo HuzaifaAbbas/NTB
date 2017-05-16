@@ -13,7 +13,12 @@ namespace NTB.Controllers
         //List Done
         public ActionResult List()
         {
+            //var q = db.Floors.Where(f=> f.Id == ;
+            //ViewBag.Building = building;
+
             return View(db.Rooms.ToList());
+            //return View(db.Floors.ToList());
+
         }
 
         //Details Done
@@ -22,13 +27,22 @@ namespace NTB.Controllers
             return View(db.Rooms.Find(id));
         }
 
+        public JsonResult GetFloorById(int ID)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            return Json(db.Floors.Where(f => f.BuildingId == ID).ToList(), JsonRequestBehavior.AllowGet);
+        }
+
         //insert
         public ActionResult Create()
         {
+            var building = db.Buildings.ToList();
+            ViewBag.Building = building;
             var floor = db.Floors.ToList();
             ViewBag.Floor = floor;
             var type = db.RoomTypes.ToList();
             ViewBag.Type = type;
+            ViewBag.Building = new SelectList(db.Buildings, "Id", "Name");
             return View();
         }
 
@@ -46,10 +60,10 @@ namespace NTB.Controllers
         //Update
         public ActionResult Edit(int id = 0)
         {
-            //var floor = db.Floors.ToList();
-            //ViewBag.Floor = floor;
-            //var type = db.RoomTypes.ToList();
-            //ViewBag.Type = type;
+            var floor = db.Floors.ToList();
+            ViewBag.Floor = floor;
+            var type = db.RoomTypes.ToList();
+            ViewBag.Type = type;
 
             return View(db.Rooms.Find(id));
         }

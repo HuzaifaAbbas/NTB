@@ -9,62 +9,53 @@
 
 <fieldset>
     <legend>Building</legend>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2">
+                <strong>@Html.DisplayNameFor(model => model.Name)</strong>
+            </div>
+            <div class="col-lg-2">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2">
+                <strong>@Html.DisplayNameFor(model => model.NoOfFloors)</strong>
+            </div>
+            <div class="col-lg-2">
+                @Html.DisplayFor(model => model.NoOfFloors)
+            </div>
+        </div>
+                <div class="display-label">
+                    <strong>@Html.DisplayNameFor(model => model.DateOfConstruction)</strong>
+                    @Html.DisplayFor(model => model.DateOfConstruction)
+                </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
-    </div>
+                <div class="display-label">
+                    <strong>@Html.DisplayNameFor(model => model.ConstructionCost)</strong>
+                    @Html.DisplayFor(model => model.ConstructionCost)
+                </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.NoOfFloors)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.NoOfFloors)
-    </div>
+                <div class="display-label">
+                    <strong>@Html.DisplayNameFor(model => model.OccupancyPermitDate)</strong>
+                    @Html.DisplayFor(model => model.OccupancyPermitDate)
+                </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.DateOfConstruction)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.DateOfConstruction)
-    </div>
+                <div class="display-label">
+                    <strong>@Html.DisplayNameFor(model => model.LandId)</strong>
+                    @Html.DisplayFor(model => model.Land.Location)
+                </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ConstructionCost)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ConstructionCost)
-    </div>
+                <div class="display-label">
+                    <strong>@Html.DisplayNameFor(model => model.BuildTypeId)</strong>
+                    @Html.DisplayFor(model => model.BuildingType.Name)
+                </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.OccupancyPermitDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.OccupancyPermitDate)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.LandId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.LandId)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.BuildTypeId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.BuildTypeId)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.BuildingStatusId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.BuildingStatusId)
-    </div>
+                <div class="display-label">
+                    <strong>@Html.DisplayNameFor(model => model.BuildingStatusId)</strong>
+                    @Html.DisplayFor(model => model.BuildingStatus.Name)
+                </div>
+            </div>
 </fieldset>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
